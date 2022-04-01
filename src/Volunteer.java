@@ -4,6 +4,7 @@ public class Volunteer  extends  StaffMember {
         super(name, address);
         this.salary = salary;
     }
+
     public double getVolunteerSalary() { return salary; }
     public String toString() {
         return "Volunteer \n"

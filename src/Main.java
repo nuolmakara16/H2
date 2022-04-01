@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 class Main {
     public static void main(String[] args) {
@@ -23,21 +22,11 @@ class Main {
             choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
-                case 1 -> {
-                    insertEmployee(scanner, collection);
-                }
-                case 2 -> {
-                    displayEmployee(collection);
-                }
-                case 3 -> {
-                    updateEmployee(scanner, collection);
-                }
-                case 4 -> {
-                    deleteEmployee(collection);
-                }
-                default -> {
-                    System.out.println("Incorrect option! \n");
-                }
+                case 1 -> { insertEmployee(scanner, collection); }
+                case 2 -> { displayEmployee(collection); }
+                case 3 -> { updateEmployee(scanner, collection); }
+                case 4 -> { deleteEmployee(scanner, collection); }
+                default -> { System.out.println("Incorrect option! \n"); }
             }
         } while(choice != 5);
     }
@@ -54,18 +43,10 @@ class Main {
             choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
-                case 1 -> {
-                    insertVolunteer(scanner, collection);
-                }
-                case 2 -> {
-                    insertSalariedEmployee(scanner, collection);
-                }
-                case 3 -> {
-                    insertHourlyEmployee(scanner, collection);
-                }
-                default -> {
-                    System.out.println("Incorrect option! \n");
-                }
+                case 1 -> { insertVolunteer(scanner, collection); }
+                case 2 -> { insertSalariedEmployee(scanner, collection); }
+                case 3 -> { insertHourlyEmployee(scanner, collection); }
+                default -> { System.out.println("Incorrect option! \n"); }
 
             }
         } while(choice != 4);
@@ -90,17 +71,35 @@ class Main {
 
     private void updateEmployee(Scanner scanner, Collection<StaffMember> collection) {
         boolean found = false;
-        System.out.println("Enter ID of employee: ");
-        int empNum = Integer.parseInt(scanner.nextLine());
+        System.out.println("Please enter employee ID: ");
+        int id = Integer.parseInt(scanner.nextLine());
 
-        for(StaffMember staff: collection) {
-            if (staff.getEmplo)
+        for (StaffMember staff : collection) {
+            if(staff.getEmployeeId() == id) {
+                found = true;
+                System.out.println("User found");
+                // ============ Update logic here =================
+
+                // ================================================
+            }
+        }
+        if (!found) {
+            System.out.println("No User Found!");
         }
 
     }
 
-    private void deleteEmployee(Collection<StaffMember> collection) {
-
+    private void deleteEmployee(Scanner scanner, Collection<StaffMember> collection) {
+        boolean found = false;
+        System.out.println("Please enter employee ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        try {
+            collection.removeIf(col -> col.id == id);
+            System.out.println("User deleted!");
+        } catch(Exception e) {
+           System.out.println("No user found!");
+        }
     }
 
     private void insertVolunteer(Scanner scanner, Collection<StaffMember> collection) {
